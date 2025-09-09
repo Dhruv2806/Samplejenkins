@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Make sure these are configured in Jenkins Global Tool Configuration
-        maven 'Maven3'    // Your Maven installation name
+        maven 'Maven-3.9.11'    // Your Maven installation name
         jdk 'JDK17'       // Your JDK installation name
     }
 
