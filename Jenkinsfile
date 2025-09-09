@@ -8,15 +8,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application using Maven...'
-                bat 'cd my-app && mvn clean package'
+                bat 'cd "D:\\Deakin University\\SIT223\\Task 8.1C\\my-app" && mvn clean package'
             }
         }
 
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests with Maven...'
-                bat 'cd my-app && mvn test'
-                bat 'cd my-app && mvn verify'
+                bat 'cd "D:\\Deakin University\\SIT223\\Task 8.1C\\my-app" && mvn test'
+                bat 'cd "D:\\Deakin University\\SIT223\\Task 8.1C\\my-app" && mvn verify'
             }
         }
 
