@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo 'Building the application using Maven...'
                 // Uncomment the next line if Maven is installed
-                // sh 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
 
@@ -15,8 +15,8 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests with JUnit/TestNG...'
-                // sh 'mvn test'       // Run unit tests
-                // sh 'mvn verify'     // Run integration tests
+                sh 'mvn test'       // Run unit tests
+                sh 'mvn verify'     // Run integration tests
             }
         }
 
