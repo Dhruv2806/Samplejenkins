@@ -2,21 +2,21 @@ pipeline {
     agent any
     tools {
         maven 'Maven-3.9.11'   
-        jdk 'JDK17'            
+        jdk 'JDK17'           
     }
     stages {
         stage('Build') {
             steps {
                 echo 'Building the application using Maven...'
-                bat 'mvn clean package'
+                bat 'cd my-app && mvn clean package'
             }
         }
 
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests with Maven...'
-                bat 'mvn test'
-                bat 'mvn verify'
+                bat 'cd my-app && mvn test'
+                bat 'cd my-app && mvn verify'
             }
         }
 
