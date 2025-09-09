@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo 'Building the application using Maven...'
                 // Uncomment the next line if Maven is installed
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
@@ -15,8 +15,8 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests with JUnit/TestNG...'
-                sh 'mvn test'       // Run unit tests
-                sh 'mvn verify'     // Run integration tests
+                bat 'mvn test'       // Run unit tests
+                bat 'mvn verify'     // Run integration tests
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code quality with SonarQube...'
-                // sh 'mvn sonar:sonar -Dsonar.projectKey=YourProjectKey -Dsonar.host.url=http://your-sonarqube-server -Dsonar.login=your-token'
+                // bat 'mvn sonar:sonar -Dsonar.projectKey=YourProjectKey -Dsonar.host.url=http://your-sonarqube-server -Dsonar.login=your-token'
             }
         }
 
@@ -32,7 +32,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Running security scan using OWASP Dependency Check...'
-                // sh 'dependency-check.sh --scan ./ --format HTML --out reports/'
+                // bat 'dependency-check.bat --scan ./ --format HTML --out reports/'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying application to staging server (AWS EC2)...'
-                // sh 'scp target/app.jar ec2-user@staging-server:/home/ec2-user/app.jar'
+                // bat 'scp target/app.jar ec2-user@staging-server:/home/ec2-user/app.jar'
             }
         }
 
@@ -48,7 +48,7 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests in staging environment...'
-                // sh './staging-tests.sh'
+                // bat './staging-tests.bat'
             }
         }
 
@@ -56,14 +56,14 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying application to production server (AWS EC2)...'
-                // sh 'scp target/app.jar ec2-user@production-server:/home/ec2-user/app.jar'
+                // bat 'scp target/app.jar ec2-user@production-server:/home/ec2-user/app.jar'
             }
         }
     }
 
     post {
         always {
-            echo 'Pipeline finished. Cleaning up workspace if necessary.'
+            echo 'Pipeline finibated. Cleaning up workspace if necessary.'
             // cleanWs()  // Uncomment to clean workspace after build
         }
         success {
