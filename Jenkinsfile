@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3.9.11'   // Build automation tool
-        jdk 'JDK17'            // Java runtime
-    }
-
     stages {
         // Stage 1: Build
         stage('Build') {
@@ -55,15 +50,6 @@ pipeline {
             steps {
                 echo 'Deploy application to AWS EC2 (production environment).'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed. Check console output for details'
         }
     }
 }
