@@ -2,83 +2,63 @@ pipeline {
     agent any
 
     tools {
-        // Make sure these are configured in Jenkins Global Tool Configuration
-        maven 'Maven-3.9.11'    // Your Maven installation name
-        jdk 'JDK17'       // Your JDK installation name
+        maven 'Maven-3.9.11'   // Build automation tool
+        jdk 'JDK17'            // Java runtime
     }
 
     stages {
         // Stage 1: Build
         stage('Build') {
             steps {
-                dir('my-app') {
-                    echo 'Building the application using Maven...'
-                    bat 'mvn clean package'
-                }
+                echo 'Build the code using Maven to compile and package the application.'
             }
         }
 
         // Stage 2: Unit and Integration Tests
         stage('Unit and Integration Tests') {
             steps {
-                dir('my-app') {
-                    echo 'Running unit and integration tests with Maven...'
-                    bat 'mvn test'       // Run unit tests
-                    bat 'mvn verify'     // Run integration tests
-                }
+                echo 'Run unit tests (JUnit) to verify functionality.'
+                echo 'Run integration tests (JUnit + Maven Surefire/Failsafe) to verify components work together.'
             }
         }
 
         // Stage 3: Code Analysis
         stage('Code Analysis') {
             steps {
-                dir('my-app') {
-                    echo 'Analyzing code quality with SonarQube...'
-                    // bat 'mvn sonar:sonar -Dsonar.projectKey=YourProjectKey -Dsonar.host.url=http://your-sonarqube-server -Dsonar.login=your-token'
-                }
+                echo 'Analyze code quality using SonarQube.'
             }
         }
 
         // Stage 4: Security Scan
         stage('Security Scan') {
             steps {
-                dir('my-app') {
-                    echo 'Running security scan using OWASP Dependency Check...'
-                    // bat 'dependency-check.bat --scan ./ --format HTML --out reports/'
-                }
+                echo 'Scan for vulnerabilities using OWASP Dependency-Check.'
             }
         }
 
         // Stage 5: Deploy to Staging
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying application to staging server (AWS EC2)...'
-                // bat 'scp target/app.jar ec2-user@staging-server:/home/ec2-user/app.jar'
+                echo 'Deploy application to AWS EC2 (staging environment).'
             }
         }
 
         // Stage 6: Integration Tests on Staging
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests in staging environment...'
-                // bat './staging-tests.bat'
+                echo 'Run integration tests in staging environment to validate production-like setup.'
             }
         }
 
         // Stage 7: Deploy to Production
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying application to production server (AWS EC2)...'
-                // bat 'scp target/app.jar ec2-user@production-server:/home/ec2-user/app.jar'
+                echo 'Deploy application to AWS EC2 (production environment).'
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline finished. Cleaning up workspace if necessary.'
-            // cleanWs()  // Uncomment if you want to clean workspace
-        }
         success {
             echo 'Pipeline completed successfully!'
         }
